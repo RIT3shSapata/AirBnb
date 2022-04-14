@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <meta charset="UTF-8">-->
+    <title>Airbnb-Login</title>
+</head>
+<body>
+<div>
+    <form th:action="@{/loginUser}" th:object="${loginFormData}" method="post">
+<!--        <label>Email:</label>-->
+        <input type="text" placeholder="email" th:field="${loginFormData.email}"/>
+        <br />
+<!--        <label>password:</label>-->
+        <input type="text" placeholder="password" th:field="${loginFormData.password}"/>
+        <button type="submit">Login</button>
+    </form>
+</div>
+</body>
+</html>
