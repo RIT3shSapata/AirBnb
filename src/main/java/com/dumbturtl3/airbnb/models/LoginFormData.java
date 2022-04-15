@@ -7,6 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 public class LoginFormData {
-    public String email;
-    public String password;
+    private String email;
+    private String password;
 }

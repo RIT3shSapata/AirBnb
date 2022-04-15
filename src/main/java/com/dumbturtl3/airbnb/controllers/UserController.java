@@ -2,7 +2,9 @@ package com.dumbturtl3.airbnb.controllers;
 
 import com.dumbturtl3.airbnb.models.LoginFormData;
 import com.dumbturtl3.airbnb.models.SignUpFormData;
+import com.dumbturtl3.airbnb.models.Tenant;
 import com.dumbturtl3.airbnb.models.User;
+import com.dumbturtl3.airbnb.services.TenantService;
 import com.dumbturtl3.airbnb.services.UserService;
 import jdk.jfr.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private TenantService tenantService;
 
     @GetMapping({"/","/login"})
     public ModelAndView login(){
@@ -37,7 +41,9 @@ public class UserController {
         mav.addObject("signUpFromData",signUpFormData);
         return mav;
     }
+    //TODO: Create a signup for owner
 
+    //TODO: Create new dashboard endpoints for owners
     @GetMapping("/dashboard")
     public ModelAndView dashboard(@RequestParam(value = "id") Integer id){
         ModelAndView mav = new ModelAndView("dashboard");
@@ -47,6 +53,9 @@ public class UserController {
         return mav;
     }
 
+
+
+    //TODO: Create new login user endpoints for owner
     @PostMapping(value = "/loginUser",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String loginUser(@ModelAttribute LoginFormData loginFormData){
         System.out.println(loginFormData);
@@ -59,4 +68,6 @@ public class UserController {
         String id = userService.signUp(signUpFormData);
         return "redirect:/dashboard/?id="+id;
     }
+
+    //TODO: Create a signup endpoint for owner
 }

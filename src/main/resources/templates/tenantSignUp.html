@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+<form th:action="@{/tenant/createTenant}" th:object="${signUpFromData}" method="post">
+    <input type="text" placeholder="enter first name" th:field="${signUpFromData.firstName}"/>
+    <br />
+    <input type="text" placeholder="enter last name" th:field="${signUpFromData.lastName}"/>
+    <br />
+    <input type="text" placeholder="enter phone number" th:field="${signUpFromData.phone}"/>
+    <br />
+    <input type="email" placeholder="email" th:field="${signUpFromData.email}"/>
+    <br />
+    <input type="password" placeholder="password" th:field="${signUpFromData.password}"/>
+    <br />
+    <button type="submit">Sign Up</button>
+</form>
+</body>
+</html>
