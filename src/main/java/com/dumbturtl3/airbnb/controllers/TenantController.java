@@ -12,13 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/tenant")
-public class TenantController {
+public class TenantController implements UserController{
 
     @Autowired
     private TenantService tenantService;
 
     @GetMapping({"/","/login"})
-    public ModelAndView tenantLogin(){
+    @Override
+    public ModelAndView login(){
         ModelAndView mav = new ModelAndView("tenantLogin");
         LoginFormData loginFormData = new LoginFormData();
         mav.addObject("loginFormData",loginFormData);
@@ -26,7 +27,8 @@ public class TenantController {
     }
 
     @GetMapping("/signup")
-    public ModelAndView tenantSignUP(){
+    @Override
+    public ModelAndView signup(){
         ModelAndView mav = new ModelAndView("tenantSignUp");
         SignUpFormData signUpFormData= new SignUpFormData();
         mav.addObject("signUpFromData",signUpFormData);
@@ -34,23 +36,24 @@ public class TenantController {
     }
 
     @GetMapping("/dashboard")
-    public ModelAndView tenantDashboard(@RequestParam(value = "id") Integer id){
+    @Override
+    public ModelAndView dashboard(@RequestParam(value = "id") Integer id){
         ModelAndView mav = new ModelAndView("tenantDashboard");
         Tenant tenant = tenantService.findTenant(id);
-        System.out.println(tenant);
         mav.addObject("tenant",tenant);
         return mav;
     }
 
-    @PostMapping(value = "/loginTenant",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String loginTenant(@ModelAttribute LoginFormData loginFormData){
-        System.out.println(loginFormData);
+    @PostMapping(value = "/loginTenant")
+    @Override
+    public String loginUser(@ModelAttribute LoginFormData loginFormData){
         String id = tenantService.login(loginFormData);
         return "redirect:/tenant/dashboard/?id="+id;
     }
 
     @PostMapping("/createTenant")
-    public String createTenant(@ModelAttribute SignUpFormData signUpFormData){
+    @Override
+    public String createUser(@ModelAttribute SignUpFormData signUpFormData){
         String id = tenantService.singUp(signUpFormData);
         return "redirect:/tenant/dashboard/?id="+id;
     }
