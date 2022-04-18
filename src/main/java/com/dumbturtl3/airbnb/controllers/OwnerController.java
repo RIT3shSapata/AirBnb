@@ -2,17 +2,20 @@ package com.dumbturtl3.airbnb.controllers;
 
 import com.dumbturtl3.airbnb.models.LoginFormData;
 import com.dumbturtl3.airbnb.models.Owner;
+import com.dumbturtl3.airbnb.models.TenantReviewFormData;
 import com.dumbturtl3.airbnb.models.SignUpFormData;
 import com.dumbturtl3.airbnb.services.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/owner")
-public class OwnerController implements UserController{
+public class OwnerController implements OwnerControllerInterface{
 
     @Autowired
     private OwnerService ownerService;
@@ -37,24 +40,41 @@ public class OwnerController implements UserController{
 
     @GetMapping("/dashboard")
     @Override
-    public ModelAndView dashboard(@RequestParam(value = "id") Integer id) {
+    public ModelAndView dashboard( HttpSession session) {
         ModelAndView mav = new ModelAndView("ownerDashboard");
-        Owner owner = ownerService.findOwner(id);
+        String id = (String) session.getAttribute("OWNER_ID");
+        Owner owner = ownerService.findOwner(Integer.parseInt(id));
         mav.addObject("owner",owner);
+        return mav;
+    }
+    @GetMapping("/tenantReview")
+    public ModelAndView tenantReview(){
+        ModelAndView mav = new ModelAndView("tenantReview");
+        TenantReviewFormData tenantReviewFormData = new TenantReviewFormData();
+        mav.addObject("tenantReviewFormData", tenantReviewFormData);
         return mav;
     }
 
     @PostMapping(value = "/loginOwner")
     @Override
-    public String loginUser(@ModelAttribute LoginFormData loginFormData) {
+    public String loginUser(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request) {
         String id = ownerService.login(loginFormData);
-        return "redirect:/owner/dashboard/?id="+id;
+        request.getSession().setAttribute("OWNER_ID",id);
+        return "redirect:/owner/dashboard";
     }
 
     @PostMapping("/createOwner")
     @Override
-    public String createUser(@ModelAttribute SignUpFormData signUpFormData) {
+    public String createUser(@ModelAttribute SignUpFormData signUpFormData, HttpServletRequest request) {
         String id = ownerService.singUp(signUpFormData);
-        return "redirect:/owner/dashboard/?id="+id;
+        request.getSession().setAttribute("OWNER_ID",id);
+        return "redirect:/owner/dashboard";
+    }
+
+    @Override
+    @PostMapping("/addTenantReview")
+    public String addTenantReview(@ModelAttribute TenantReviewFormData tenantReviewFormData){
+        ownerService.tenantReview(tenantReviewFormData);
+        return "redirect:/owner/dashboard";
     }
 }

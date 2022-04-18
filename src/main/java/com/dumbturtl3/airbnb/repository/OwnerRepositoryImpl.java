@@ -1,6 +1,7 @@
 package com.dumbturtl3.airbnb.repository;
 
 import com.dumbturtl3.airbnb.models.Owner;
+import com.dumbturtl3.airbnb.models.TenantReviewFormData;
 import com.dumbturtl3.airbnb.models.SignUpFormData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -49,14 +50,30 @@ public class OwnerRepositoryImpl implements OwnerRepository{
         List<Owner> owners = jdbcTemplate.query(SQL_FIND_TENANT_BY_EMAIL_PASSWORD,ownerRowMapper);
         return owners.get(0).getUserId();
     }
-    private RowMapper<Owner> ownerRowMapper=((rs, rno)->{
+
+    public void addReview(TenantReviewFormData tenantReviewFormData){
+        final String SQL_ADD_TENANTREVIEW = "INSERT INTO TENANTREVIEW(OWNERID,TENANTID,RATING,REVIEW)"+
+                "VALUES(?,?,?,?);";
+        KeyHolder reviewkey = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection ->{
+            PreparedStatement ps = connection.prepareStatement(SQL_ADD_TENANTREVIEW, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, tenantReviewFormData.getOwnerID());
+            ps.setInt(2, tenantReviewFormData.getTenantID());
+            ps.setFloat(3, tenantReviewFormData.getRating());
+            ps.setString(4, tenantReviewFormData.getReview());
+            return ps;
+        },reviewkey);
+
+    }
+
+    private final RowMapper<Owner> ownerRowMapper=((rs, rno)->{
         return new Owner(
                 rs.getInt("OWNERID"),
                 rs.getString("FIRST_NAME"),
                 rs.getString("LAST_NAME"),
+                rs.getString("PHONENUMBER"),
                 rs.getString("EMAIL"),
-                rs.getString("PASSWORD"),
-                rs.getString("PHONENUMBER")
+                rs.getString("PASSWORD")
         );
     });
 }
