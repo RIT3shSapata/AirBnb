@@ -65,11 +65,13 @@ create table homeReview(
 );
 
 create table tenantReview(
+    homeID integer not null,
     ownerID integer not null,
     tenantID integer not null,
     rating float not null,
     review varchar(100),
     foreign key (ownerID) references owner(ownerId),
+    foreign key (homeID) references home(homeID),
     foreign key (tenantID) references tenant(tenantID),
     primary key (ownerID,tenantID)
 );

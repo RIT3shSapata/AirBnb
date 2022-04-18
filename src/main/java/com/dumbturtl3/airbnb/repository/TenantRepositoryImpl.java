@@ -1,5 +1,6 @@
 package com.dumbturtl3.airbnb.repository;
 
+import com.dumbturtl3.airbnb.models.ReviewFormData;
 import com.dumbturtl3.airbnb.models.SignUpFormData;
 import com.dumbturtl3.airbnb.models.Tenant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,21 @@ public class TenantRepositoryImpl implements TenantRepository{
         final String SQL_FIND_TENANT_BY_EMAIL_PASSWORD = "SELECT * FROM TENANT WHERE EMAIL = '"+email+"' ;";
         List<Tenant> tenants = jdbcTemplate.query(SQL_FIND_TENANT_BY_EMAIL_PASSWORD,tenantRowMapper);
         return tenants.get(0).getUserId();
+    }
+
+    public void homeReview(ReviewFormData reviewFormData){
+        final String SQL_ADD_REVIEW = "INSERT INTO HOMEREVIEW(HOMEID,OWNERID,TENANTID,RATING,REVIEW)"+ "VALUES(NEXTVAL('TENANT_SEQ'),?,?,?,?,?);" ;       KeyHolder keyHolder = new GeneratedKeyHolder();
+        KeyHolder reviewkey = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection ->{
+            PreparedStatement ps = connection.prepareStatement(SQL_ADD_REVIEW, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,reviewFormData.getHomeID());
+            ps.setInt(2,reviewFormData.getOwnerID());
+            ps.setInt(3,reviewFormData.getTenantID());
+            ps.setFloat(4,reviewFormData.getRating());
+            ps.setString(5,reviewFormData.getReview());
+            return ps;
+        },reviewkey);
+
     }
 
     private RowMapper<Tenant> tenantRowMapper=((rs,rno)->{

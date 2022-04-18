@@ -2,6 +2,7 @@ package com.dumbturtl3.airbnb.controllers;
 
 import com.dumbturtl3.airbnb.models.LoginFormData;
 import com.dumbturtl3.airbnb.models.Owner;
+import com.dumbturtl3.airbnb.models.ReviewFormData;
 import com.dumbturtl3.airbnb.models.SignUpFormData;
 import com.dumbturtl3.airbnb.services.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/owner")
-public class OwnerController implements UserController{
+public class OwnerController implements OwnerControllerInterface{
 
     @Autowired
     private OwnerService ownerService;
@@ -43,6 +44,13 @@ public class OwnerController implements UserController{
         mav.addObject("owner",owner);
         return mav;
     }
+    @GetMapping("/tenantReview")
+    public ModelAndView tenantReview(){
+        ModelAndView mav = new ModelAndView(("tenantReview"));
+        ReviewFormData reviewFormData = new ReviewFormData();
+        mav.addObject("reviewFormData",reviewFormData);
+        return mav;
+    }
 
     @PostMapping(value = "/loginOwner")
     @Override
@@ -56,5 +64,11 @@ public class OwnerController implements UserController{
     public String createUser(@ModelAttribute SignUpFormData signUpFormData) {
         String id = ownerService.singUp(signUpFormData);
         return "redirect:/owner/dashboard/?id="+id;
+    }
+    @PostMapping("/tenantReview")
+    public String tenantReview(@ModelAttribute ReviewFormData reviewFormData){
+        ownerService.tenantReview(reviewFormData);
+        // TODO: Change the id after using cookies
+        return "redirect:/owner/dashboard/?id=1";
     }
 }
