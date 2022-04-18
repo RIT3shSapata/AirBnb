@@ -55,6 +55,7 @@ public class OwnerController implements UserController{
     @Override
     public String createUser(@ModelAttribute SignUpFormData signUpFormData) {
         String id = ownerService.singUp(signUpFormData);
-        return "redirect:/owner/dashboard/?id="+id;
+        return "redirect:/owner/dashboard/?id=" + id;
     }
+
 }
