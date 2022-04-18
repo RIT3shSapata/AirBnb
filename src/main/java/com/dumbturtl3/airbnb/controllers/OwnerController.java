@@ -1,9 +1,6 @@
 package com.dumbturtl3.airbnb.controllers;
 
-import com.dumbturtl3.airbnb.models.LoginFormData;
-import com.dumbturtl3.airbnb.models.Owner;
-import com.dumbturtl3.airbnb.models.TenantReviewFormData;
-import com.dumbturtl3.airbnb.models.SignUpFormData;
+import com.dumbturtl3.airbnb.models.*;
 import com.dumbturtl3.airbnb.services.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.sound.midi.SysexMessage;
 
 @Controller
 @RequestMapping("/owner")
@@ -37,7 +35,6 @@ public class OwnerController implements OwnerControllerInterface{
         mav.addObject("signUpFromData",signUpFormData);
         return mav;
     }
-
     @GetMapping("/dashboard")
     @Override
     public ModelAndView dashboard( HttpSession session) {
@@ -47,6 +44,7 @@ public class OwnerController implements OwnerControllerInterface{
         mav.addObject("owner",owner);
         return mav;
     }
+    @Override
     @GetMapping("/tenantReview")
     public ModelAndView tenantReview(){
         ModelAndView mav = new ModelAndView("tenantReview");
@@ -77,4 +75,22 @@ public class OwnerController implements OwnerControllerInterface{
         ownerService.tenantReview(tenantReviewFormData);
         return "redirect:/owner/dashboard";
     }
+
+    @Override
+    @GetMapping("/addHome")
+    public ModelAndView addHome()   {
+//        ModelAndView mav = new ModelAndView("addHomeForm");
+        ModelAndView mav = new ModelAndView("addHome");
+        HomeFormData homeFormData = new HomeFormData();
+        mav.addObject("homeFormData",homeFormData);
+        return mav;
+    }
+
+    @Override
+    @PostMapping("/addHomeData")
+    public String addHomeData(HomeFormData homeFormData) {
+        System.out.println(homeFormData);
+        return "redirect:/owner/dashboard";
+    }
+
 }

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+</head>
+<body>
+<div class="block p-6 rounded-lg shadow-lg bg-white max-w-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-500 justify-center align-center block m-auto" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+    </svg><br/>
+    <h2 class="text-red-600 font-semibold text-center align-center text-3xl">Home is where the heart is!</h2>
+    <br/>
+    <form th:action="@{/owner/addHomeData}" th:object="${homeFormData}" method="post">
+        <div>
+        <div class="form-group mb-6">
+            <input type="text" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+                   aria-describedby="emailHelp123" placeholder="home name" th:field="${homeFormData.homeName}">
+        </div>
+        <div class="form-group mb-6">
+            <input type="number" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
+                   aria-describedby="emailHelp124" placeholder="price" th:field="${homeFormData.price}">
+        </div>
+        </div>
+            <div class="form-group mb-6">
+                <input type="text" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
+                       aria-describedby="emailHelp124" placeholder="city" th:field="${homeFormData.city}">
+            </div>
+        <div class="form-group mb-6">
+            <input type="text" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
+                   aria-describedby="emailHelp124" placeholder="state" th:field="${homeFormData.state}">
+        </div>
+        <div class="form-group mb-6">
+            <input type="text" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
+                   aria-describedby="emailHelp124" placeholder="country" th:field="${homeFormData.country}">
+        </div>
+        <div class="form-group mb-6">
+            <input type="text" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
+                   aria-describedby="emailHelp124" placeholder="pin" th:field="${homeFormData.pin}">
+            <button type="submit" class="
+      w-full
+      px-6
+      py-2.5
+      bg-red-600
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      rounded
+      shadow-md
+      hover:bg-red-500 hover:shadow-lg
+      focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-red-800 active:shadow-lg
+      transition
+      duration-150
+      ease-in-out">Add Home</button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>
