@@ -1,5 +1,7 @@
 package com.dumbturtl3.airbnb.repository;
 
+import com.dumbturtl3.airbnb.models.HomeReviewFormData;
+import com.dumbturtl3.airbnb.models.TenantReviewFormData;
 import com.dumbturtl3.airbnb.models.SignUpFormData;
 import com.dumbturtl3.airbnb.models.Tenant;
 import org.springframework.stereotype.Repository;
@@ -11,4 +13,6 @@ public interface TenantRepository {
     Tenant findTenant(Integer id);
 
     Integer findByEmailAndPassword(String email, String password);
+
+    void homeReview(HomeReviewFormData homeReviewFormData);
 }

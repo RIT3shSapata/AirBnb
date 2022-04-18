@@ -1,8 +1,6 @@
 package com.dumbturtl3.airbnb.services;
 
-import com.dumbturtl3.airbnb.models.LoginFormData;
-import com.dumbturtl3.airbnb.models.SignUpFormData;
-import com.dumbturtl3.airbnb.models.Tenant;
+import com.dumbturtl3.airbnb.models.*;
 import com.dumbturtl3.airbnb.repository.TenantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,4 +28,10 @@ public class TenantServiceImpl implements TenantService{
         Integer id = tenantRepository.findByEmailAndPassword(loginFormData.getEmail(), loginFormData.getPassword());
         return Integer.toString(id);
     }
+
+    @Override
+    public void homeReview(HomeReviewFormData homeReviewFormData) {
+        tenantRepository.homeReview(homeReviewFormData);
+    }
+
 }

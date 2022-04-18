@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Review</title>
+</head>
+<body>
+<form th:action="@{/tenant/homeReview}" th:object="${ReviewFormData}" method="post">
+  <input type="number" placeholder="enter room ID" th:field="${ReviewFormData.homeID}"/>
+  <br />
+  <input type="number" placeholder="enter owner ID" th:field="${ReviewFormData.ownerID}"/>
+  <br />
+  <input type="number" placeholder="enter your ID" th:field="${ReviewFormData.tenantID}"/>
+  <br />
+  <input type="number" placeholder="Enter your rating out of 10" th:field="${ReviewFormData.rating}"/>
+  <br />
+  <input type="text" placeholder="Type your review" th:field="${ReviewFormData.review}"/>
+  <br />
+  <button type="submit">Publish Review</button>
+</form>
+</body>
+</html>

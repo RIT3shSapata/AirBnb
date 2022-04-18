@@ -1,11 +1,8 @@
 package com.dumbturtl3.airbnb.controllers;
 
-import com.dumbturtl3.airbnb.models.LoginFormData;
-import com.dumbturtl3.airbnb.models.SignUpFormData;
-import com.dumbturtl3.airbnb.models.Tenant;
+import com.dumbturtl3.airbnb.models.*;
 import com.dumbturtl3.airbnb.services.TenantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/tenant")
-public class TenantController implements UserController{
+public class TenantController implements TenantControllerInterface{
 
     @Autowired
     private TenantService tenantService;
@@ -35,6 +32,14 @@ public class TenantController implements UserController{
         ModelAndView mav = new ModelAndView("tenantSignUp");
         SignUpFormData signUpFormData= new SignUpFormData();
         mav.addObject("signUpFromData",signUpFormData);
+        return mav;
+    }
+    @GetMapping("/homeReview")
+    @Override
+    public ModelAndView homeReview(){
+        ModelAndView mav = new ModelAndView(("homeReview"));
+        HomeReviewFormData homeReviewFormData = new HomeReviewFormData();
+        mav.addObject("reviewFormData", homeReviewFormData);
         return mav;
     }
 
@@ -62,5 +67,13 @@ public class TenantController implements UserController{
         String id = tenantService.singUp(signUpFormData);
         request.getSession().setAttribute("TENANT_ID",id);
         return "redirect:/tenant/dashboard";
+    }
+
+    @PostMapping("/homeReview")
+    @Override
+    public String addHomeReview(@ModelAttribute HomeReviewFormData homeReviewFormData){
+        tenantService.homeReview(homeReviewFormData);
+        // TODO: Change the id after using cookies
+        return "redirect:/tenant/dashboard/?id=1";
     }
 }

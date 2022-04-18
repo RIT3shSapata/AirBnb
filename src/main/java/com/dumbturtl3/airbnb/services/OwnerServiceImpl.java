@@ -2,6 +2,7 @@ package com.dumbturtl3.airbnb.services;
 
 import com.dumbturtl3.airbnb.models.LoginFormData;
 import com.dumbturtl3.airbnb.models.Owner;
+import com.dumbturtl3.airbnb.models.TenantReviewFormData;
 import com.dumbturtl3.airbnb.models.SignUpFormData;
 import com.dumbturtl3.airbnb.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,9 @@ public class OwnerServiceImpl implements OwnerService{
     public String login(LoginFormData loginFormData) {
         Integer id = ownerRepository.findByEmailAndPassword(loginFormData.getEmail(),loginFormData.getPassword());
         return Integer.toString(id);
+    }
+
+    public void tenantReview(TenantReviewFormData tenantReviewFormData){
+        ownerRepository.addReview(tenantReviewFormData);
     }
 }

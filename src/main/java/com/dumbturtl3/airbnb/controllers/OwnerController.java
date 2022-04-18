@@ -2,6 +2,7 @@ package com.dumbturtl3.airbnb.controllers;
 
 import com.dumbturtl3.airbnb.models.LoginFormData;
 import com.dumbturtl3.airbnb.models.Owner;
+import com.dumbturtl3.airbnb.models.TenantReviewFormData;
 import com.dumbturtl3.airbnb.models.SignUpFormData;
 import com.dumbturtl3.airbnb.services.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/owner")
-public class OwnerController implements UserController{
+public class OwnerController implements OwnerControllerInterface{
 
     @Autowired
     private OwnerService ownerService;
@@ -46,6 +47,13 @@ public class OwnerController implements UserController{
         mav.addObject("owner",owner);
         return mav;
     }
+    @GetMapping("/tenantReview")
+    public ModelAndView tenantReview(){
+        ModelAndView mav = new ModelAndView("tenantReview");
+        TenantReviewFormData tenantReviewFormData = new TenantReviewFormData();
+        mav.addObject("tenantReviewFormData", tenantReviewFormData);
+        return mav;
+    }
 
     @PostMapping(value = "/loginOwner")
     @Override
@@ -63,4 +71,10 @@ public class OwnerController implements UserController{
         return "redirect:/owner/dashboard";
     }
 
+    @Override
+    @PostMapping("/addTenantReview")
+    public String addTenantReview(@ModelAttribute TenantReviewFormData tenantReviewFormData){
+        ownerService.tenantReview(tenantReviewFormData);
+        return "redirect:/owner/dashboard";
+    }
 }
