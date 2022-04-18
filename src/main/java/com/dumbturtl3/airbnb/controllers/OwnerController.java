@@ -89,7 +89,7 @@ public class OwnerController implements OwnerControllerInterface{
     @Override
     @PostMapping("/addHomeData")
     public String addHomeData(HomeFormData homeFormData) {
-        System.out.println(homeFormData);
+        ownerService.addHome(homeFormData);
         return "redirect:/owner/dashboard";
     }
 

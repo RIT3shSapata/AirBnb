@@ -27,7 +27,24 @@
     <h2 class="text-red-600 font-semibold text-center align-center text-3xl">Home is where the heart is!</h2>
     <br/>
     <form th:action="@{/owner/addHomeData}" th:object="${homeFormData}" method="post">
-        <div>
+        <div><div class="form-group mb-6">
+            <input type="number" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+                   aria-describedby="emailHelp123" placeholder="enter your ID" th:field="${homeFormData.ownerID}">
+        </div>
         <div class="form-group mb-6">
             <input type="text" class="form-control
           block
@@ -136,6 +153,8 @@
           m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
                    aria-describedby="emailHelp124" placeholder="pin" th:field="${homeFormData.pin}">
+        </div>
+        <div class="form-group mb-6">
             <button type="submit" class="
       w-full
       px-6

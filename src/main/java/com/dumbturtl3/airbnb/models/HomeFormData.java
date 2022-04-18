@@ -11,6 +11,7 @@ import lombok.ToString;
 @Getter
 public class HomeFormData {
     private String homeName;
+    private int ownerID;
     private double price;
     private String city;
     private String state;
