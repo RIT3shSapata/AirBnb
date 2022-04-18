@@ -73,3 +73,5 @@ create table tenantReview(
     foreign key (tenantID) references tenant(tenantID),
     primary key (ownerID,tenantID)
 );
+alter table home drop column roomno;
+alter table home ADD homename varchar(30);

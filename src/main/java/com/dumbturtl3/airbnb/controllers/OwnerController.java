@@ -62,4 +62,5 @@ public class OwnerController implements UserController{
         request.getSession().setAttribute("OWNER_ID",id);
         return "redirect:/owner/dashboard";
     }
+
 }
