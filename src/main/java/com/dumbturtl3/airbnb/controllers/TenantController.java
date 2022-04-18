@@ -73,7 +73,6 @@ public class TenantController implements TenantControllerInterface{
     @Override
     public String addHomeReview(@ModelAttribute HomeReviewFormData homeReviewFormData){
         tenantService.homeReview(homeReviewFormData);
-        // TODO: Change the id after using cookies
         return "redirect:/tenant/dashboard";
     }
 }

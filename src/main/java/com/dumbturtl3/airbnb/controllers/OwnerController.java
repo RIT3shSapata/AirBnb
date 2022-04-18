@@ -53,6 +53,16 @@ public class OwnerController implements OwnerControllerInterface{
         return mav;
     }
 
+    @Override
+    @GetMapping("/addHome")
+    public ModelAndView addHome()   {
+        ModelAndView mav = new ModelAndView("addHome");
+        HomeFormData homeFormData = new HomeFormData();
+        mav.addObject("homeFormData",homeFormData);
+        return mav;
+    }
+
+    // POST REQUESTS
     @PostMapping(value = "/loginOwner")
     @Override
     public String loginUser(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request) {
@@ -77,18 +87,10 @@ public class OwnerController implements OwnerControllerInterface{
     }
 
     @Override
-    @GetMapping("/addHome")
-    public ModelAndView addHome()   {
-//        ModelAndView mav = new ModelAndView("addHomeForm");
-        ModelAndView mav = new ModelAndView("addHome");
-        HomeFormData homeFormData = new HomeFormData();
-        mav.addObject("homeFormData",homeFormData);
-        return mav;
-    }
-
-    @Override
     @PostMapping("/addHomeData")
-    public String addHomeData(HomeFormData homeFormData) {
+    public String addHomeData(HomeFormData homeFormData,HttpSession session) {
+        int id = Integer.parseInt((String) session.getAttribute("OWNER_ID")) ;
+        homeFormData.setOwnerID(id);
         ownerService.addHome(homeFormData);
         return "redirect:/owner/dashboard";
     }
