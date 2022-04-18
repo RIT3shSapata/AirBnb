@@ -53,7 +53,7 @@ public class TenantRepositoryImpl implements TenantRepository{
     }
 
     public void homeReview(HomeReviewFormData homeReviewFormData){
-        final String SQL_ADD_REVIEW = "INSERT INTO HOMEREVIEW(HOMEID,OWNERID,TENANTID,RATING,REVIEW)"+ "VALUES(NEXTVAL('TENANT_SEQ'),?,?,?,?,?);" ;       KeyHolder keyHolder = new GeneratedKeyHolder();
+        final String SQL_ADD_REVIEW = "INSERT INTO HOMEREVIEW(HOMEID,OWNERID,TENANTID,RATING,REVIEW)"+ "VALUES(?,?,?,?,?);" ;
         KeyHolder reviewkey = new GeneratedKeyHolder();
         jdbcTemplate.update(connection ->{
             PreparedStatement ps = connection.prepareStatement(SQL_ADD_REVIEW, Statement.RETURN_GENERATED_KEYS);

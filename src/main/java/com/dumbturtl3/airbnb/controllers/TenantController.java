@@ -37,7 +37,7 @@ public class TenantController implements TenantControllerInterface{
     @GetMapping("/homeReview")
     @Override
     public ModelAndView homeReview(){
-        ModelAndView mav = new ModelAndView(("homeReview"));
+        ModelAndView mav = new ModelAndView("homeReview");
         HomeReviewFormData homeReviewFormData = new HomeReviewFormData();
         mav.addObject("reviewFormData", homeReviewFormData);
         return mav;
@@ -74,6 +74,6 @@ public class TenantController implements TenantControllerInterface{
     public String addHomeReview(@ModelAttribute HomeReviewFormData homeReviewFormData){
         tenantService.homeReview(homeReviewFormData);
         // TODO: Change the id after using cookies
-        return "redirect:/tenant/dashboard/?id=1";
+        return "redirect:/tenant/dashboard";
     }
 }

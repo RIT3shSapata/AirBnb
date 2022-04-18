@@ -5,16 +5,16 @@
   <title>Add Review</title>
 </head>
 <body>
-<form th:action="@{/tenant/homeReview}" th:object="${ReviewFormData}" method="post">
-  <input type="number" placeholder="enter room ID" th:field="${ReviewFormData.homeID}"/>
+<form th:action="@{/tenant/homeReview}" th:object="${reviewFormData}" method="post">
+  <input type="number" placeholder="enter room ID" th:field="${reviewFormData.homeID}"/>
   <br />
-  <input type="number" placeholder="enter owner ID" th:field="${ReviewFormData.ownerID}"/>
+  <input type="number" placeholder="enter owner ID" th:field="${reviewFormData.ownerID}"/>
   <br />
-  <input type="number" placeholder="enter your ID" th:field="${ReviewFormData.tenantID}"/>
+  <input type="number" placeholder="enter your ID" th:field="${reviewFormData.tenantID}"/>
   <br />
-  <input type="number" placeholder="Enter your rating out of 10" th:field="${ReviewFormData.rating}"/>
+  <input type="number" placeholder="Enter your rating out of 10" th:field="${reviewFormData.rating}"/>
   <br />
-  <input type="text" placeholder="Type your review" th:field="${ReviewFormData.review}"/>
+  <input type="text" placeholder="Type your review" th:field="${reviewFormData.review}"/>
   <br />
   <button type="submit">Publish Review</button>
 </form>
