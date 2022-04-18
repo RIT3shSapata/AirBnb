@@ -49,14 +49,14 @@ public class OwnerRepositoryImpl implements OwnerRepository{
         List<Owner> owners = jdbcTemplate.query(SQL_FIND_TENANT_BY_EMAIL_PASSWORD,ownerRowMapper);
         return owners.get(0).getUserId();
     }
-    private RowMapper<Owner> ownerRowMapper=((rs, rno)->{
+    final private RowMapper<Owner> ownerRowMapper=((rs, rno)->{
         return new Owner(
                 rs.getInt("OWNERID"),
                 rs.getString("FIRST_NAME"),
                 rs.getString("LAST_NAME"),
+                rs.getString("PHONENUMBER"),
                 rs.getString("EMAIL"),
-                rs.getString("PASSWORD"),
-                rs.getString("PHONENUMBER")
+                rs.getString("PASSWORD")
         );
     });
 }

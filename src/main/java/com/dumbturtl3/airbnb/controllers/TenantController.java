@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/tenant")
 public class TenantController implements UserController{
@@ -37,24 +40,27 @@ public class TenantController implements UserController{
 
     @GetMapping("/dashboard")
     @Override
-    public ModelAndView dashboard(@RequestParam(value = "id") Integer id){
+    public ModelAndView dashboard( HttpSession session){
         ModelAndView mav = new ModelAndView("tenantDashboard");
-        Tenant tenant = tenantService.findTenant(id);
+        String id = (String) session.getAttribute("TENANT_ID");
+        Tenant tenant = tenantService.findTenant(Integer.parseInt(id));
         mav.addObject("tenant",tenant);
         return mav;
     }
 
     @PostMapping(value = "/loginTenant")
     @Override
-    public String loginUser(@ModelAttribute LoginFormData loginFormData){
+    public String loginUser(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request){
         String id = tenantService.login(loginFormData);
-        return "redirect:/tenant/dashboard/?id="+id;
+        request.getSession().setAttribute("TENANT_ID",id);
+        return "redirect:/tenant/dashboard";
     }
 
     @PostMapping("/createTenant")
     @Override
-    public String createUser(@ModelAttribute SignUpFormData signUpFormData){
+    public String createUser(@ModelAttribute SignUpFormData signUpFormData, HttpServletRequest request){
         String id = tenantService.singUp(signUpFormData);
-        return "redirect:/tenant/dashboard/?id="+id;
+        request.getSession().setAttribute("TENANT_ID",id);
+        return "redirect:/tenant/dashboard";
     }
 }
