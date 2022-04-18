@@ -3,20 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
 </head>
-<body>
-<form th:action="@{/owner/createOwner}" th:object="${signUpFromData}" method="post">
-    <input type="text" placeholder="enter first name" th:field="${signUpFromData.firstName}"/>
-    <br />
-    <input type="text" placeholder="enter last name" th:field="${signUpFromData.lastName}"/>
-    <br />
-    <input type="text" placeholder="enter phone number" th:field="${signUpFromData.phone}"/>
-    <br />
-    <input type="email" placeholder="email" th:field="${signUpFromData.email}"/>
-    <br />
-    <input type="password" placeholder="password" th:field="${signUpFromData.password}"/>
-    <br />
-    <button type="submit">Sign Up</button>
-</form>
+<body class="bg-red-500">
+<div class="block p-6 rounded-lg shadow-lg bg-white max-w-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <h2 class="text-red-600 font-semibold text-center align-center text-3xl">Hello Owner! Welcome to AirBnB!</h2>
+    <br/>
+    <form th:action="@{/owner/createOwner}" th:object="${signUpFromData}" method="post">
+        <div class="grid grid-cols-2 gap-4">
+            <div class="form-group mb-6">
+                <input type="text" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
+                       aria-describedby="emailHelp123" placeholder="First name" th:field="${signUpFromData.firstName}">
+            </div>
+            <div class="form-group mb-6">
+                <input type="text" class="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
+                       aria-describedby="emailHelp124" placeholder="Last name" th:field="${signUpFromData.lastName}">
+            </div>
+        </div>
+        <div class="form-group mb-6">
+            <input type="email" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput125"
+                   placeholder="Email address" th:field="${signUpFromData.email}">
+        </div>
+        <div class="form-group mb-6">
+            <input type="text" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput130"
+                   placeholder="Phone Number" th:field="${signUpFromData.phone}" >
+        </div>
+        <div class="form-group mb-6">
+            <input type="password" class="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput126"
+                   placeholder="Password" th:field="${signUpFromData.password}">
+        </div>
+        <button type="submit" class="
+      w-full
+      px-6
+      py-2.5
+      bg-blue-600
+      text-white
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      rounded
+      shadow-md
+      hover:bg-blue-700 hover:shadow-lg
+      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+      active:bg-blue-800 active:shadow-lg
+      transition
+      duration-150
+      ease-in-out">Sign up</button>
+    </form>
+</div>
 </body>
 </html>
