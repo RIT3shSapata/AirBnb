@@ -2,12 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
 </head>
 <body>
-<h1>Dashboard</h1>
-<div>
-    <p>Welcome <span th:text="${tenant.firstName}"/> <span th:text="${tenant.lastName}" /> </p>
-</div>
+<div class="w-full max-w-xs absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <h1 class="text-black-600 font-semibold text-center align-center text-3xl">Dashboard</h1><br/>
+    <h2 class="text-red-600 font-semibold text-center align-center text-2xl">Hello,<span th:text="${tenant.firstName}"/> <span th:text="${tenant.lastName}" />!</h2><br/>
+        </div>
 </body>
 </html>
