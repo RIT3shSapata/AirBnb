@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class HomeReviewFormData {
+
     private int homeID;
     private int ownerID;
     private int tenantID;

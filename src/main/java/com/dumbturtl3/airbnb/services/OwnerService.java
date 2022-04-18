@@ -1,9 +1,6 @@
 package com.dumbturtl3.airbnb.services;
 
-import com.dumbturtl3.airbnb.models.LoginFormData;
-import com.dumbturtl3.airbnb.models.Owner;
-import com.dumbturtl3.airbnb.models.TenantReviewFormData;
-import com.dumbturtl3.airbnb.models.SignUpFormData;
+import com.dumbturtl3.airbnb.models.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,4 +9,5 @@ public interface OwnerService {
     public Owner findOwner(Integer id);
     public String login(LoginFormData loginFormData);
     public void tenantReview(TenantReviewFormData tenantReviewFormData);
+    public void addHome(HomeFormData homeFormData);
 }

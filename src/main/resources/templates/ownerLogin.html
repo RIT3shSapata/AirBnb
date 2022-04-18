@@ -21,6 +21,9 @@
 </head>
 <body>
 <div class="w-full max-w-xs absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-500 justify-center align-center block m-auto" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+    </svg><br/>
     <h2 class="text-red-600 font-semibold text-center align-center text-3xl">Hello Owner, Login!</h2><br/>
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" th:action="@{/owner/loginOwner}" th:object="${loginFormData}" method="post">
         <div class="mb-4">

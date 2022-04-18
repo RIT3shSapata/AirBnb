@@ -1,9 +1,6 @@
 package com.dumbturtl3.airbnb.services;
 
-import com.dumbturtl3.airbnb.models.LoginFormData;
-import com.dumbturtl3.airbnb.models.Owner;
-import com.dumbturtl3.airbnb.models.TenantReviewFormData;
-import com.dumbturtl3.airbnb.models.SignUpFormData;
+import com.dumbturtl3.airbnb.models.*;
 import com.dumbturtl3.airbnb.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +31,10 @@ public class OwnerServiceImpl implements OwnerService{
 
     public void tenantReview(TenantReviewFormData tenantReviewFormData){
         ownerRepository.addReview(tenantReviewFormData);
+    }
+
+    @Override
+    public void addHome(HomeFormData homeFormData) {
+        ownerRepository.addRoom(homeFormData);
     }
 }
