@@ -1,9 +1,6 @@
 package com.dumbturtl3.airbnb.controllers;
 
-import com.dumbturtl3.airbnb.models.HomeFormData;
-import com.dumbturtl3.airbnb.models.LoginFormData;
-import com.dumbturtl3.airbnb.models.Owner;
-import com.dumbturtl3.airbnb.models.TenantReviewFormData;
+import com.dumbturtl3.airbnb.models.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,5 +15,5 @@ public interface OwnerControllerInterface {
     public String createOwner(Owner owner, HttpServletRequest request);
     public String addTenantReview(TenantReviewFormData tenantReviewFormData);
     public ModelAndView addHome();
-    public String addHomeData(HomeFormData homeFormData, HttpSession session);
+    public String addHomeData(Home home, HttpSession session);
 }

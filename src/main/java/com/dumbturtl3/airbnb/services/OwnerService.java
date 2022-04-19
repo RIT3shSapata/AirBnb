@@ -9,5 +9,5 @@ public interface OwnerService {
     public Owner findOwner(String id);
     public String login(LoginFormData loginFormData);
     public void tenantReview(TenantReviewFormData tenantReviewFormData);
-    public void addHome(HomeFormData homeFormData);
+    public void addHome(Home home, String  id);
 }

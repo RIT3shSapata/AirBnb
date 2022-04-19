@@ -22,20 +22,20 @@ public class HomeRepositoryImpl implements HomeRepository{
     @Override
     public void addRoom(HomeFormData homeFormData) {
 
-        final String SQL_ADD_ROOM = "INSERT INTO home(homeid, ownerid,homename,price, city,state,country,pin)\n" +
-                "VALUES (NEXTVAL('HOME_SEQ'), ?, ?, ?,?,?,?,?);";
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(connection ->{
-            PreparedStatement ps = connection.prepareStatement(SQL_ADD_ROOM, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, homeFormData.getOwnerID());
-            ps.setString(2, homeFormData.getHomeName());
-            ps.setDouble(3, homeFormData.getPrice());
-            ps.setString(4, homeFormData.getCity());
-            ps.setString(5, homeFormData.getState());
-            ps.setString(6, homeFormData.getCountry());
-            ps.setString(7, homeFormData.getPin());
-            return ps;
-        },keyHolder);
+//        final String SQL_ADD_ROOM = "INSERT INTO home(homeid, ownerid,homename,price, city,state,country,pin)\n" +
+//                "VALUES (NEXTVAL('HOME_SEQ'), ?, ?, ?,?,?,?,?);";
+//        KeyHolder keyHolder = new GeneratedKeyHolder();
+//        jdbcTemplate.update(connection ->{
+//            PreparedStatement ps = connection.prepareStatement(SQL_ADD_ROOM, Statement.RETURN_GENERATED_KEYS);
+//            ps.setInt(1, homeFormData.getOwnerID());
+//            ps.setString(2, homeFormData.getHomeName());
+//            ps.setDouble(3, homeFormData.getPrice());
+//            ps.setString(4, homeFormData.getCity());
+//            ps.setString(5, homeFormData.getState());
+//            ps.setString(6, homeFormData.getCountry());
+//            ps.setString(7, homeFormData.getPin());
+//            return ps;
+//        },keyHolder);
     }
 
     @Override
@@ -54,8 +54,8 @@ public class HomeRepositoryImpl implements HomeRepository{
                 rs.getString("CITY"),
                 rs.getString("COUNTRY"),
                 rs.getString("STATE"),
-                rs.getString("PIN"),
-                rs.getInt("HOME.OWNERID")
+                rs.getString("PIN")
+//                rs.getInt("HOME.OWNERID")
         );
     });
 }

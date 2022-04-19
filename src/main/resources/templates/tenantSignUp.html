@@ -26,7 +26,7 @@
     </svg><br/>
     <h2 class="text-red-600 font-semibold text-center align-center text-3xl">Hello Tenant, Welcome to AirBnB!</h2>
     <br/>
-    <form th:action="@{/tenant/createTenant}" th:object="${signUpFromData}" method="post">
+    <form th:action="@{/tenant/createTenant}" th:object="${tenant}" method="post">
         <div class="grid grid-cols-2 gap-4">
             <div class="form-group mb-6">
                 <input type="text" class="form-control
@@ -44,7 +44,7 @@
           ease-in-out
           m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
-                       aria-describedby="emailHelp123" placeholder="First name" th:field="${signUpFromData.firstName}">
+                       aria-describedby="emailHelp123" placeholder="First name" th:field="${tenant.firstName}">
             </div>
             <div class="form-group mb-6">
                 <input type="text" class="form-control
@@ -62,7 +62,7 @@
           ease-in-out
           m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
-                       aria-describedby="emailHelp124" placeholder="Last name" th:field="${signUpFromData.lastName}">
+                       aria-describedby="emailHelp124" placeholder="Last name" th:field="${tenant.lastName}">
             </div>
         </div>
         <div class="form-group mb-6">
@@ -80,7 +80,7 @@
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput125"
-                   placeholder="Email address" th:field="${signUpFromData.email}">
+                   placeholder="Email address" th:field="${tenant.email}">
         </div>
         <div class="form-group mb-6">
             <input type="text" class="form-control block
@@ -97,7 +97,7 @@
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput130"
-                   placeholder="Phone Number" th:field="${signUpFromData.phone}" >
+                   placeholder="Phone Number" th:field="${tenant.phone}" >
         </div>
         <div class="form-group mb-6">
             <input type="password" class="form-control block
@@ -114,7 +114,7 @@
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput126"
-                   placeholder="Password" th:field="${signUpFromData.password}">
+                   placeholder="Password" th:field="${tenant.password}">
         </div>
         <button type="submit" class="
       w-full

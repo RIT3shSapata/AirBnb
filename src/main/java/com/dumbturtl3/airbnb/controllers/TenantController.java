@@ -30,8 +30,8 @@ public class TenantController implements TenantControllerInterface{
     @Override
     public ModelAndView signup(){
         ModelAndView mav = new ModelAndView("tenantSignUp");
-        SignUpFormData signUpFormData= new SignUpFormData();
-        mav.addObject("signUpFromData",signUpFormData);
+        Tenant tenant = new Tenant();
+        mav.addObject("tenant",tenant);
         return mav;
     }
 
@@ -74,7 +74,6 @@ public class TenantController implements TenantControllerInterface{
 
     @PostMapping("/createTenant")
     @Override
-    //TODO: Change the signup form data to tenant
     public String createTenant(@ModelAttribute Tenant tenant, HttpServletRequest request){
         String id = tenantService.signUp(tenant);
         request.getSession().setAttribute("TENANT_ID",id);

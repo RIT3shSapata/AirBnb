@@ -58,8 +58,10 @@ public class OwnerController implements OwnerControllerInterface{
     @GetMapping("/addHome")
     public ModelAndView addHome()   {
         ModelAndView mav = new ModelAndView("addHome");
+        Home home = new Home();
         HomeFormData homeFormData = new HomeFormData();
         mav.addObject("homeFormData",homeFormData);
+        mav.addObject("home",home);
         return mav;
     }
 
@@ -89,10 +91,9 @@ public class OwnerController implements OwnerControllerInterface{
 
     @Override
     @PostMapping("/addHomeData")
-    public String addHomeData(HomeFormData homeFormData,HttpSession session) {
-        int id = Integer.parseInt((String) session.getAttribute("OWNER_ID")) ;
-        homeFormData.setOwnerID(id);
-        ownerService.addHome(homeFormData);
+    public String addHomeData(Home home,HttpSession session) {
+        String id = (String) session.getAttribute("OWNER_ID") ;
+        ownerService.addHome(home,id);
         return "redirect:/owner/dashboard";
     }
 

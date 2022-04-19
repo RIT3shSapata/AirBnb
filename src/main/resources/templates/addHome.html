@@ -26,7 +26,7 @@
     </svg><br/>
     <h2 class="text-red-600 font-semibold text-center align-center text-3xl">Home is where the heart is!</h2>
     <br/>
-    <form th:action="@{/owner/addHomeData}" th:object="${homeFormData}" method="post">
+    <form th:action="@{/owner/addHomeData}" th:object="${home}" method="post">
         <div>
 <!--            <div class="form-group mb-6">-->
 <!--            <input type="number" class="form-control-->
@@ -44,7 +44,7 @@
 <!--          ease-in-out-->
 <!--          m-0-->
 <!--          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"-->
-<!--                   aria-describedby="emailHelp123" placeholder="enter your ID" th:field="${homeFormData.ownerID}">-->
+<!--                   aria-describedby="emailHelp123" placeholder="enter your ID" th:field="${home.ownerID}">-->
 <!--        </div>-->
         <div class="form-group mb-6">
             <input type="text" class="form-control
@@ -62,7 +62,7 @@
           ease-in-out
           m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput123"
-                   aria-describedby="emailHelp123" placeholder="home name" th:field="${homeFormData.homeName}">
+                   aria-describedby="emailHelp123" placeholder="home name" th:field="${home.homeName}">
         </div>
         <div class="form-group mb-6">
             <input type="number" class="form-control
@@ -80,7 +80,7 @@
           ease-in-out
           m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
-                   aria-describedby="emailHelp124" placeholder="price" th:field="${homeFormData.price}">
+                   aria-describedby="emailHelp124" placeholder="price" th:field="${home.price}">
         </div>
         </div>
             <div class="form-group mb-6">
@@ -99,7 +99,7 @@
           ease-in-out
           m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
-                       aria-describedby="emailHelp124" placeholder="city" th:field="${homeFormData.city}">
+                       aria-describedby="emailHelp124" placeholder="city" th:field="${home.city}">
             </div>
         <div class="form-group mb-6">
             <input type="text" class="form-control
@@ -117,7 +117,7 @@
           ease-in-out
           m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
-                   aria-describedby="emailHelp124" placeholder="state" th:field="${homeFormData.state}">
+                   aria-describedby="emailHelp124" placeholder="state" th:field="${home.state}">
         </div>
         <div class="form-group mb-6">
             <input type="text" class="form-control
@@ -135,7 +135,7 @@
           ease-in-out
           m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
-                   aria-describedby="emailHelp124" placeholder="country" th:field="${homeFormData.country}">
+                   aria-describedby="emailHelp124" placeholder="country" th:field="${home.country}">
         </div>
         <div class="form-group mb-6">
             <input type="text" class="form-control
@@ -153,7 +153,7 @@
           ease-in-out
           m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput124"
-                   aria-describedby="emailHelp124" placeholder="pin" th:field="${homeFormData.pin}">
+                   aria-describedby="emailHelp124" placeholder="pin" th:field="${home.pin}">
         </div>
         <div class="form-group mb-6">
             <button type="submit" class="

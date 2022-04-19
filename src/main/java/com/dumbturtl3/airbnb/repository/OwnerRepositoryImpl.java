@@ -65,13 +65,14 @@ public class OwnerRepositoryImpl implements OwnerRepository{
     }
 
     private final RowMapper<Owner> ownerRowMapper=((rs, rno)->{
-        return new Owner(
-                rs.getInt("OWNERID"),
-                rs.getString("FIRST_NAME"),
-                rs.getString("LAST_NAME"),
-                rs.getString("PHONENUMBER"),
-                rs.getString("EMAIL"),
-                rs.getString("PASSWORD")
-        );
+//        return new Owner(
+//                rs.getInt("OWNERID"),
+//                rs.getString("FIRST_NAME"),
+//                rs.getString("LAST_NAME"),
+//                rs.getString("PHONENUMBER"),
+//                rs.getString("EMAIL"),
+//                rs.getString("PASSWORD")
+//        );
+        return new Owner();
     });
 }

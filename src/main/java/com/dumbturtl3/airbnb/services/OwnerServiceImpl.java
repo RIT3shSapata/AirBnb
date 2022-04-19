@@ -1,7 +1,7 @@
 package com.dumbturtl3.airbnb.services;
 
 import com.dumbturtl3.airbnb.models.*;
-import com.dumbturtl3.airbnb.repository.HomeRepository;
+import com.dumbturtl3.airbnb.repository.HomeRepository1;
 import com.dumbturtl3.airbnb.repository.OwnerRepository;
 import com.dumbturtl3.airbnb.repository.OwnerRepository1;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,9 @@ public class OwnerServiceImpl implements OwnerService{
     private OwnerRepository ownerRepository;
     @Autowired
     private OwnerRepository1 ownerRepository1;
+
     @Autowired
-    private HomeRepository homeRepository;
+    private HomeRepository1 homeRepository1;
 
     @Override
     public String signUp(Owner owner) {
@@ -43,8 +44,12 @@ public class OwnerServiceImpl implements OwnerService{
     }
 
     @Override
-    public void addHome(HomeFormData homeFormData) {
-//        ownerRepository.addRoom(homeFormData);
-        homeRepository.addRoom(homeFormData);
+    public void addHome(Home home, String id) {
+        Integer ownerID = Integer.parseInt(id);
+        Owner owner = ownerRepository1.getById(ownerID);
+        List<Home> homes = owner.getHomes();
+        homes.add(home);
+        owner.setHomes(homes);
+        ownerRepository1.save(owner);
     }
 }

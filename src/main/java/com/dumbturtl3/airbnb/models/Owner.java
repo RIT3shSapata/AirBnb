@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,4 +26,7 @@ public class Owner {
     private String email;
     @Column(name="password",nullable = false)
     private String password;
+    @OneToMany(targetEntity = Home.class,cascade = CascadeType.ALL)
+    @JoinColumn(name="ownerID_fk",referencedColumnName = "ownerID")
+    private List<Home> homes;
 }
