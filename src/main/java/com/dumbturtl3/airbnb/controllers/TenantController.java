@@ -49,10 +49,16 @@ public class TenantController implements TenantControllerInterface{
         ModelAndView mav = new ModelAndView("tenantDashboard");
         String id = (String) session.getAttribute("TENANT_ID");
         Tenant tenant = tenantService.findTenant(Integer.parseInt(id));
+        SearchByCity searchByCity=new SearchByCity();
+        mav.addObject("searchByCity",searchByCity);
         mav.addObject("tenant",tenant);
         return mav;
     }
-
+    @Override
+    @GetMapping("/searchResults")
+    public ModelAndView searchResults() {
+        return null;
+    }
     @PostMapping(value = "/loginTenant")
     @Override
     public String loginUser(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request){
@@ -75,4 +81,14 @@ public class TenantController implements TenantControllerInterface{
         tenantService.homeReview(homeReviewFormData);
         return "redirect:/tenant/dashboard";
     }
+
+
+    @PostMapping("/searchRoom")
+    @Override
+    public String searchRoom() {
+        return null;
+    }
+
+
+
 }
