@@ -1,6 +1,7 @@
 package com.dumbturtl3.airbnb.services;
 
 import com.dumbturtl3.airbnb.models.*;
+import com.dumbturtl3.airbnb.repository.HomeRepository;
 import com.dumbturtl3.airbnb.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,8 @@ public class OwnerServiceImpl implements OwnerService{
 
     @Autowired
     private OwnerRepository ownerRepository;
+    @Autowired
+    private HomeRepository homeRepository;
 
     @Override
     public String singUp(SignUpFormData signUpFormData) {
@@ -35,6 +38,7 @@ public class OwnerServiceImpl implements OwnerService{
 
     @Override
     public void addHome(HomeFormData homeFormData) {
-        ownerRepository.addRoom(homeFormData);
+//        ownerRepository.addRoom(homeFormData);
+        homeRepository.addRoom(homeFormData);
     }
 }

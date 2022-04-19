@@ -10,6 +10,5 @@ public interface OwnerRepository {
 
     Integer findByEmailAndPassword(String email, String password);
     void addReview(TenantReviewFormData tenantReviewFormData);
-    void addRoom(HomeFormData homeFormData);
 
 }
