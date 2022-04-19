@@ -53,6 +53,17 @@ public class TenantController implements TenantControllerInterface{
         return mav;
     }
 
+    @GetMapping("/room")
+    @Override
+    public ModelAndView viewRoom(@RequestParam(value="id") Integer homeID){
+       ModelAndView mav = new ModelAndView("roomDetails");
+       BookRoomForm bookRoomForm = new BookRoomForm();
+       Home home = tenantService.getRoom(homeID);
+       mav.addObject("bookRoomForm", bookRoomForm);
+       mav.addObject("home",home);
+       return mav;
+    }
+
     @PostMapping(value = "/loginTenant")
     @Override
     public String loginUser(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request){
@@ -74,5 +85,11 @@ public class TenantController implements TenantControllerInterface{
     public String addHomeReview(@ModelAttribute HomeReviewFormData homeReviewFormData){
         tenantService.homeReview(homeReviewFormData);
         return "redirect:/tenant/dashboard";
+    }
+
+    @PostMapping("/bookRoom")
+    @Override
+    public String bookRoom() {
+        return null;
     }
 }

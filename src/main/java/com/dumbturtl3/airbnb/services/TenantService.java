@@ -9,4 +9,5 @@ public interface TenantService {
     public Tenant findTenant(Integer id);
     public String login(LoginFormData loginFormData);
     public void homeReview(HomeReviewFormData homeReviewFormData);
+    public Home getRoom(Integer id);
 }
