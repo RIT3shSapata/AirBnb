@@ -66,7 +66,7 @@ public class OwnerController implements OwnerControllerInterface{
     // POST REQUESTS
     @PostMapping(value = "/loginOwner")
     @Override
-    public String loginUser(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request) {
+    public String loginOwner(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request) {
         String id = ownerService.login(loginFormData);
         request.getSession().setAttribute("OWNER_ID",id);
         return "redirect:/owner/dashboard";

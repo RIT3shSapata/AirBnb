@@ -49,7 +49,7 @@ public class TenantRepositoryImpl implements TenantRepository{
     public Integer findByEmailAndPassword(String email, String password) {
         final String SQL_FIND_TENANT_BY_EMAIL_PASSWORD = "SELECT * FROM TENANT WHERE EMAIL = '"+email+"' ;";
         List<Tenant> tenants = jdbcTemplate.query(SQL_FIND_TENANT_BY_EMAIL_PASSWORD,tenantRowMapper);
-        return tenants.get(0).getUserId();
+        return tenants.get(0).getTenantID();
     }
 
     public void homeReview(HomeReviewFormData homeReviewFormData){

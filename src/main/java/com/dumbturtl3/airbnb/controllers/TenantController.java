@@ -34,6 +34,17 @@ public class TenantController implements TenantControllerInterface{
         mav.addObject("signUpFromData",signUpFormData);
         return mav;
     }
+
+    @GetMapping("/dashboard")
+    @Override
+    public ModelAndView dashboard( HttpSession session){
+        ModelAndView mav = new ModelAndView("tenantDashboard");
+        String id = (String) session.getAttribute("TENANT_ID");
+        Tenant tenant = tenantService.findTenant(id);
+        mav.addObject("tenant",tenant);
+        return mav;
+    }
+
     @GetMapping("/homeReview")
     @Override
     public ModelAndView homeReview(){
@@ -43,17 +54,6 @@ public class TenantController implements TenantControllerInterface{
         return mav;
     }
 
-    @GetMapping("/dashboard")
-    @Override
-    public ModelAndView dashboard( HttpSession session){
-        ModelAndView mav = new ModelAndView("tenantDashboard");
-        String id = (String) session.getAttribute("TENANT_ID");
-        Tenant tenant = tenantService.findTenant(Integer.parseInt(id));
-        mav.addObject("tenant",tenant);
-        return mav;
-    }
-
-    @GetMapping("/room")
     @Override
     public ModelAndView viewRoom(@RequestParam(value="id") Integer homeID){
        ModelAndView mav = new ModelAndView("roomDetails");
@@ -66,7 +66,7 @@ public class TenantController implements TenantControllerInterface{
 
     @PostMapping(value = "/loginTenant")
     @Override
-    public String loginUser(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request){
+    public String loginTenant(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request){
         String id = tenantService.login(loginFormData);
         request.getSession().setAttribute("TENANT_ID",id);
         return "redirect:/tenant/dashboard";
@@ -74,8 +74,9 @@ public class TenantController implements TenantControllerInterface{
 
     @PostMapping("/createTenant")
     @Override
-    public String createUser(@ModelAttribute SignUpFormData signUpFormData, HttpServletRequest request){
-        String id = tenantService.singUp(signUpFormData);
+    //TODO: Change the signup form data to tenant
+    public String createTenant(@ModelAttribute Tenant tenant, HttpServletRequest request){
+        String id = tenantService.signUp(tenant);
         request.getSession().setAttribute("TENANT_ID",id);
         return "redirect:/tenant/dashboard";
     }

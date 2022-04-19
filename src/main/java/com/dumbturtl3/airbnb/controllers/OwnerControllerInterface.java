@@ -13,7 +13,7 @@ public interface OwnerControllerInterface {
     public ModelAndView login();
     public ModelAndView signup();
     public ModelAndView dashboard(HttpSession session);
-    public String loginUser(LoginFormData loginFormData, HttpServletRequest request);
+    public String loginOwner(LoginFormData loginFormData, HttpServletRequest request);
     public ModelAndView tenantReview();
     public String createOwner(Owner owner, HttpServletRequest request);
     public String addTenantReview(TenantReviewFormData tenantReviewFormData);
