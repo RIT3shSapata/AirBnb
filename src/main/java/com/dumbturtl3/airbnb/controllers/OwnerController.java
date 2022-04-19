@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.sound.midi.SysexMessage;
 
 @Controller
 @RequestMapping("/owner")
@@ -32,7 +31,9 @@ public class OwnerController implements OwnerControllerInterface{
     public ModelAndView signup() {
         ModelAndView mav = new ModelAndView("ownerSignUp");
         SignUpFormData signUpFormData= new SignUpFormData();
+        Owner owner = new Owner();
         mav.addObject("signUpFromData",signUpFormData);
+        mav.addObject("owner",owner);
         return mav;
     }
     @GetMapping("/dashboard")
@@ -40,7 +41,7 @@ public class OwnerController implements OwnerControllerInterface{
     public ModelAndView dashboard( HttpSession session) {
         ModelAndView mav = new ModelAndView("ownerDashboard");
         String id = (String) session.getAttribute("OWNER_ID");
-        Owner owner = ownerService.findOwner(Integer.parseInt(id));
+        Owner owner = ownerService.findOwner(id);
         mav.addObject("owner",owner);
         return mav;
     }
@@ -73,8 +74,8 @@ public class OwnerController implements OwnerControllerInterface{
 
     @PostMapping("/createOwner")
     @Override
-    public String createUser(@ModelAttribute SignUpFormData signUpFormData, HttpServletRequest request) {
-        String id = ownerService.singUp(signUpFormData);
+    public String createOwner(@ModelAttribute Owner owner, HttpServletRequest request) {
+        String id = ownerService.signUp(owner);
         request.getSession().setAttribute("OWNER_ID",id);
         return "redirect:/owner/dashboard";
     }

@@ -2,7 +2,7 @@ package com.dumbturtl3.airbnb.repository;
 
 import com.dumbturtl3.airbnb.models.*;
 
-public interface OwnerRepository {
+public interface OwnerRepository{
 
     Integer addOwner(SignUpFormData signUpFormData);
 

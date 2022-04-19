@@ -43,7 +43,7 @@ public class HomeRepositoryImpl implements HomeRepository{
 //        final String SQL_FIND_HOME="select home.homeid,home.homename,home.price,home.city,home.state,home.country,home.pin,o.ownerid from home inner join owner o on home.ownerid = o.ownerid";
         final String SQL_FIND_HOME="select * from home where homeid="+Integer.toString(id)+";";
         List<Home> homes= jdbcTemplate.query(SQL_FIND_HOME,homeRowMapper);
-        return homes.get(0);i
+        return homes.get(0);
     }
 
     final private RowMapper<Home> homeRowMapper = ((rs,rno)->{

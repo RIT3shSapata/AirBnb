@@ -46,7 +46,7 @@ public class OwnerRepositoryImpl implements OwnerRepository{
     public Integer findByEmailAndPassword(String email, String password) {
         final String SQL_FIND_TENANT_BY_EMAIL_PASSWORD = "SELECT * FROM OWNER WHERE EMAIL = '"+email+"' ;";
         List<Owner> owners = jdbcTemplate.query(SQL_FIND_TENANT_BY_EMAIL_PASSWORD,ownerRowMapper);
-        return owners.get(0).getUserId();
+        return owners.get(0).getOwnerID();
     }
 
     public void addReview(TenantReviewFormData tenantReviewFormData){

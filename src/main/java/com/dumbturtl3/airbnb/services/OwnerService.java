@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface OwnerService {
-    public String singUp(SignUpFormData signUpFormData);
-    public Owner findOwner(Integer id);
+    public String signUp(Owner owner);
+    public Owner findOwner(String id);
     public String login(LoginFormData loginFormData);
     public void tenantReview(TenantReviewFormData tenantReviewFormData);
     public void addHome(HomeFormData homeFormData);
