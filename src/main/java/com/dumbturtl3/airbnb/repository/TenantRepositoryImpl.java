@@ -68,13 +68,14 @@ public class TenantRepositoryImpl implements TenantRepository{
     }
 
     private RowMapper<Tenant> tenantRowMapper=((rs,rno)->{
-        return new Tenant(
-                rs.getInt("TENANTID"),
-                rs.getString("FIRST_NAME"),
-                rs.getString("LAST_NAME"),
-                rs.getString("EMAIL"),
-                rs.getString("PASSWORD"),
-                rs.getString("PHONENUMBER")
-        );
+//        return new Tenant(
+//                rs.getInt("TENANTID"),
+//                rs.getString("FIRST_NAME"),
+//                rs.getString("LAST_NAME"),
+//                rs.getString("EMAIL"),
+//                rs.getString("PASSWORD"),
+//                rs.getString("PHONENUMBER")
+//        );
+        return null;
     });
 }

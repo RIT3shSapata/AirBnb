@@ -13,10 +13,10 @@ public interface TenantControllerInterface{
     public ModelAndView login();
     public ModelAndView signup();
     public ModelAndView dashboard(HttpSession session);
-    public ModelAndView homeReview();
+    public ModelAndView homeReview(Integer homeID);
     public ModelAndView viewRoom(Integer homeID);
     public String loginTenant(LoginFormData loginFormData, HttpServletRequest request);
     public String createTenant(Tenant tenant, HttpServletRequest request);
-    public String addHomeReview(HomeReviewFormData homeReviewFormData);
+    public String addHomeReview( HomeReviewFormData homeReviewFormData, HttpSession session );
     public String bookRoom();
 }

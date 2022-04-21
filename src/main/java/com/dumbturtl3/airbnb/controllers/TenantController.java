@@ -47,9 +47,10 @@ public class TenantController implements TenantControllerInterface{
 
     @GetMapping("/homeReview")
     @Override
-    public ModelAndView homeReview(){
+    public ModelAndView homeReview(@RequestParam Integer id){
         ModelAndView mav = new ModelAndView("homeReview");
         HomeReviewFormData homeReviewFormData = new HomeReviewFormData();
+        homeReviewFormData.setHomeID(id);
         mav.addObject("reviewFormData", homeReviewFormData);
         return mav;
     }
@@ -82,8 +83,9 @@ public class TenantController implements TenantControllerInterface{
 
     @PostMapping("/homeReview")
     @Override
-    public String addHomeReview(@ModelAttribute HomeReviewFormData homeReviewFormData){
-        tenantService.homeReview(homeReviewFormData);
+    public String addHomeReview(@ModelAttribute HomeReviewFormData homeReviewFormData,HttpSession session ){
+        Integer tenantID =Integer.parseInt ((String) session.getAttribute("TENANT_ID"));
+        tenantService.homeReview(homeReviewFormData,tenantID, homeReviewFormData.getHomeID());
         return "redirect:/tenant/dashboard";
     }
 

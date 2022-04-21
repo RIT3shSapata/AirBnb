@@ -47,15 +47,16 @@ public class HomeRepositoryImpl implements HomeRepository{
     }
 
     final private RowMapper<Home> homeRowMapper = ((rs,rno)->{
-        return new Home(
-                rs.getInt("HOMEID"),
-                rs.getString("HOMENAME"),
-                rs.getDouble("PRICE"),
-                rs.getString("CITY"),
-                rs.getString("COUNTRY"),
-                rs.getString("STATE"),
-                rs.getString("PIN")
-//                rs.getInt("HOME.OWNERID")
-        );
+//        return new Home(
+//                rs.getInt("HOMEID"),
+//                rs.getString("HOMENAME"),
+//                rs.getDouble("PRICE"),
+//                rs.getString("CITY"),
+//                rs.getString("COUNTRY"),
+//                rs.getString("STATE"),
+//                rs.getString("PIN")
+////                rs.getInt("HOME.OWNERID")
+//        );
+        return null;
     });
 }
