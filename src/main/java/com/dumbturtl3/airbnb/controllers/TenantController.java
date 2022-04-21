@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/tenant")
@@ -69,8 +70,12 @@ public class TenantController implements TenantControllerInterface{
 
     @Override
     @GetMapping("/searchResults")
-    public ModelAndView searchResults() {
-        return null;
+    public ModelAndView searchResults(@ModelAttribute SearchByCity searchByCity, HttpSession session) {
+        List<Home> homes=tenantService.findHomes(searchByCity.getCity());
+        System.out.println(homes);
+        ModelAndView mav = new ModelAndView("SearchCityResults");
+        mav.addObject("homes",homes);
+        return mav;
     }
     @PostMapping(value = "/loginTenant")
     @Override
@@ -102,10 +107,10 @@ public class TenantController implements TenantControllerInterface{
         return null;
     }
 
-    @PostMapping("/searchRoom")
     @Override
-    public String searchRoom() {
-        return null;
+    @PostMapping("/searchRoom")
+    public String searchRoom(@ModelAttribute SearchByCity searchByCity) {
+        return "redirect:/tenant/dashboard";
     }
 
 
