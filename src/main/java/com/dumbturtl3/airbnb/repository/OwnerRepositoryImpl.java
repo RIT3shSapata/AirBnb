@@ -46,7 +46,7 @@ public class OwnerRepositoryImpl implements OwnerRepository{
     public Integer findByEmailAndPassword(String email, String password) {
         final String SQL_FIND_TENANT_BY_EMAIL_PASSWORD = "SELECT * FROM OWNER WHERE EMAIL = '"+email+"' ;";
         List<Owner> owners = jdbcTemplate.query(SQL_FIND_TENANT_BY_EMAIL_PASSWORD,ownerRowMapper);
-        return owners.get(0).getUserId();
+        return owners.get(0).getOwnerID();
     }
 
     public void addReview(TenantReviewFormData tenantReviewFormData){
@@ -64,31 +64,15 @@ public class OwnerRepositoryImpl implements OwnerRepository{
 
     }
 
-    public void addRoom(HomeFormData homeFormData) {
-        final String SQL_ADD_ROOM = "INSERT INTO home(homeid, ownerid,homename,price, city,state,country,pin)\n" +
-                "VALUES (NEXTVAL('OWNER_SEQ'), ?, ?, ?,?,?,?,?);";
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(connection ->{
-            PreparedStatement ps = connection.prepareStatement(SQL_ADD_ROOM, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, homeFormData.getOwnerID());
-            ps.setString(2, homeFormData.getHomeName());
-            ps.setDouble(3, homeFormData.getPrice());
-            ps.setString(4, homeFormData.getCity());
-            ps.setString(5, homeFormData.getState());
-            ps.setString(6, homeFormData.getCountry());
-            ps.setString(7, homeFormData.getPin());
-            return ps;
-        },keyHolder);
-    }
-
     private final RowMapper<Owner> ownerRowMapper=((rs, rno)->{
-        return new Owner(
-                rs.getInt("OWNERID"),
-                rs.getString("FIRST_NAME"),
-                rs.getString("LAST_NAME"),
-                rs.getString("PHONENUMBER"),
-                rs.getString("EMAIL"),
-                rs.getString("PASSWORD")
-        );
+//        return new Owner(
+//                rs.getInt("OWNERID"),
+//                rs.getString("FIRST_NAME"),
+//                rs.getString("LAST_NAME"),
+//                rs.getString("PHONENUMBER"),
+//                rs.getString("EMAIL"),
+//                rs.getString("PASSWORD")
+//        );
+        return new Owner();
     });
 }

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room Details</title>
+</head>
+<body>
+<div>
+    <p>Home Name: <span th:text="${home.getHomeName()}"></span></p>
+    <p>Home City: <span th:text="${home.getCity()}"></span></p>
+</div>
+<form th:object="${bookRoomForm}">
+    <label>Start Date</label>
+    <input type="date" th:field="${bookRoomForm.startDate}"/>
+    <br/>
+    <label>Start Date</label>
+    <input type="date" th:field="${bookRoomForm.startDate}"/>
+</form>
+</body>
+</html>

@@ -30,16 +30,8 @@ public class TenantController implements TenantControllerInterface{
     @Override
     public ModelAndView signup(){
         ModelAndView mav = new ModelAndView("tenantSignUp");
-        SignUpFormData signUpFormData= new SignUpFormData();
-        mav.addObject("signUpFromData",signUpFormData);
-        return mav;
-    }
-    @GetMapping("/homeReview")
-    @Override
-    public ModelAndView homeReview(){
-        ModelAndView mav = new ModelAndView("homeReview");
-        HomeReviewFormData homeReviewFormData = new HomeReviewFormData();
-        mav.addObject("reviewFormData", homeReviewFormData);
+        Tenant tenant = new Tenant();
+        mav.addObject("tenant",tenant);
         return mav;
     }
 
@@ -48,14 +40,34 @@ public class TenantController implements TenantControllerInterface{
     public ModelAndView dashboard( HttpSession session){
         ModelAndView mav = new ModelAndView("tenantDashboard");
         String id = (String) session.getAttribute("TENANT_ID");
-        Tenant tenant = tenantService.findTenant(Integer.parseInt(id));
+        Tenant tenant = tenantService.findTenant(id);
         mav.addObject("tenant",tenant);
         return mav;
     }
 
+    @GetMapping("/homeReview")
+    @Override
+    public ModelAndView homeReview(@RequestParam Integer id){
+        ModelAndView mav = new ModelAndView("homeReview");
+        HomeReviewFormData homeReviewFormData = new HomeReviewFormData();
+        homeReviewFormData.setHomeID(id);
+        mav.addObject("reviewFormData", homeReviewFormData);
+        return mav;
+    }
+
+    @Override
+    public ModelAndView viewRoom(@RequestParam(value="id") Integer homeID){
+       ModelAndView mav = new ModelAndView("roomDetails");
+       BookRoomForm bookRoomForm = new BookRoomForm();
+       Home home = tenantService.getRoom(homeID);
+       mav.addObject("bookRoomForm", bookRoomForm);
+       mav.addObject("home",home);
+       return mav;
+    }
+
     @PostMapping(value = "/loginTenant")
     @Override
-    public String loginUser(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request){
+    public String loginTenant(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request){
         String id = tenantService.login(loginFormData);
         request.getSession().setAttribute("TENANT_ID",id);
         return "redirect:/tenant/dashboard";
@@ -63,16 +75,23 @@ public class TenantController implements TenantControllerInterface{
 
     @PostMapping("/createTenant")
     @Override
-    public String createUser(@ModelAttribute SignUpFormData signUpFormData, HttpServletRequest request){
-        String id = tenantService.singUp(signUpFormData);
+    public String createTenant(@ModelAttribute Tenant tenant, HttpServletRequest request){
+        String id = tenantService.signUp(tenant);
         request.getSession().setAttribute("TENANT_ID",id);
         return "redirect:/tenant/dashboard";
     }
 
     @PostMapping("/homeReview")
     @Override
-    public String addHomeReview(@ModelAttribute HomeReviewFormData homeReviewFormData){
-        tenantService.homeReview(homeReviewFormData);
+    public String addHomeReview(@ModelAttribute HomeReviewFormData homeReviewFormData,HttpSession session ){
+        Integer tenantID =Integer.parseInt ((String) session.getAttribute("TENANT_ID"));
+        tenantService.homeReview(homeReviewFormData,tenantID, homeReviewFormData.getHomeID());
         return "redirect:/tenant/dashboard";
+    }
+
+    @PostMapping("/bookRoom")
+    @Override
+    public String bookRoom() {
+        return null;
     }
 }
