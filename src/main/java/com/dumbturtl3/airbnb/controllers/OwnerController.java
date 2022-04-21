@@ -49,8 +49,8 @@ public class OwnerController implements OwnerControllerInterface{
     @GetMapping("/tenantReview")
     public ModelAndView tenantReview(){
         ModelAndView mav = new ModelAndView("tenantReview");
-        TenantReviewFormData tenantReviewFormData = new TenantReviewFormData();
-        mav.addObject("tenantReviewFormData", tenantReviewFormData);
+        TenantReview tenantReview = new TenantReview();
+        mav.addObject("tenantReview", tenantReview);
         return mav;
     }
 
@@ -84,8 +84,8 @@ public class OwnerController implements OwnerControllerInterface{
 
     @Override
     @PostMapping("/addTenantReview")
-    public String addTenantReview(@ModelAttribute TenantReviewFormData tenantReviewFormData){
-        ownerService.tenantReview(tenantReviewFormData);
+    public String addTenantReview(@ModelAttribute TenantReview tenantReview){
+        ownerService.tenantReview(tenantReview, tenantReview.getOwnerID(), tenantReview.getTenantID());
         return "redirect:/owner/dashboard";
     }
 

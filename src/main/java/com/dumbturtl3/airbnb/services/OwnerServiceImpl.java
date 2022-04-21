@@ -4,6 +4,7 @@ import com.dumbturtl3.airbnb.models.*;
 import com.dumbturtl3.airbnb.repository.HomeRepository1;
 import com.dumbturtl3.airbnb.repository.OwnerRepository;
 import com.dumbturtl3.airbnb.repository.OwnerRepository1;
+import com.dumbturtl3.airbnb.repository.TenantReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class OwnerServiceImpl implements OwnerService{
 
     @Autowired
     private HomeRepository1 homeRepository1;
+
+    @Autowired
+    private TenantReviewRepository tenantReviewRepository;
 
     @Override
     public String signUp(Owner owner) {
@@ -38,9 +42,12 @@ public class OwnerServiceImpl implements OwnerService{
         return Integer.toString(id);
     }
 
+
     //TODO: Change code from old owner repository to new owner repository
-    public void tenantReview(TenantReviewFormData tenantReviewFormData){
-        ownerRepository.addReview(tenantReviewFormData);
+    public void tenantReview(TenantReview tenantReview,Integer ownerID, Integer tenantID){
+        tenantReview.setTenantID(tenantID);
+        tenantReview.setOwnerID(ownerID);
+        tenantReviewRepository.save(tenantReview);
     }
 
     @Override

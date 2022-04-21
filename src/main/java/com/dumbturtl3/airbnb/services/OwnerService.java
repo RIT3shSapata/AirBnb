@@ -8,6 +8,6 @@ public interface OwnerService {
     public String signUp(Owner owner);
     public Owner findOwner(String id);
     public String login(LoginFormData loginFormData);
-    public void tenantReview(TenantReviewFormData tenantReviewFormData);
+    public void tenantReview(TenantReview tenantReview,Integer ownerID,Integer tenantID);
     public void addHome(Home home, String  id);
 }

@@ -49,16 +49,16 @@ public class OwnerRepositoryImpl implements OwnerRepository{
         return owners.get(0).getOwnerID();
     }
 
-    public void addReview(TenantReviewFormData tenantReviewFormData){
+    public void addReview(TenantReview tenantReview){
         final String SQL_ADD_TENANTREVIEW = "INSERT INTO TENANTREVIEW(OWNERID,TENANTID,RATING,REVIEW)"+
                 "VALUES(?,?,?,?);";
         KeyHolder reviewkey = new GeneratedKeyHolder();
         jdbcTemplate.update(connection ->{
             PreparedStatement ps = connection.prepareStatement(SQL_ADD_TENANTREVIEW, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, tenantReviewFormData.getOwnerID());
-            ps.setInt(2, tenantReviewFormData.getTenantID());
-            ps.setFloat(3, tenantReviewFormData.getRating());
-            ps.setString(4, tenantReviewFormData.getReview());
+            //ps.setInt(1, tenantReviewFormData.getOwnerID());
+            //ps.setInt(2, tenantReviewFormData.getTenantID());
+            //ps.setFloat(3, tenantReviewFormData.getRating());
+//            ps.setString(4, tenantReviewFormData.getReview());
             return ps;
         },reviewkey);
 

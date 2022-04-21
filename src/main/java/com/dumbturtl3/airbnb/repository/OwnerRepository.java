@@ -9,6 +9,6 @@ public interface OwnerRepository{
     Owner findOwner(Integer id);
 
     Integer findByEmailAndPassword(String email, String password);
-    void addReview(TenantReviewFormData tenantReviewFormData);
+    void addReview(TenantReview tenantReview);
 
 }
