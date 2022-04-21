@@ -11,6 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+<<<<<<< Updated upstream
+=======
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
+>>>>>>> Stashed changes
 @Controller
 @RequestMapping("/tenant")
 public class TenantController implements TenantControllerInterface{
@@ -52,6 +59,36 @@ public class TenantController implements TenantControllerInterface{
         return mav;
     }
 
+<<<<<<< Updated upstream
+=======
+    @GetMapping("/homeReview")
+    @Override
+    public ModelAndView homeReview(@RequestParam Integer id){
+        ModelAndView mav = new ModelAndView("homeReview");
+        HomeReviewFormData homeReviewFormData = new HomeReviewFormData();
+        homeReviewFormData.setHomeID(id);
+        mav.addObject("reviewFormData", homeReviewFormData);
+        return mav;
+    }
+    @GetMapping("/viewRoom")
+    @Override
+    public ModelAndView viewRoom(@RequestParam(value="id") Integer homeID){
+       ModelAndView mav = new ModelAndView("roomDetails");
+       BookRoomForm bookRoomForm = new BookRoomForm();
+       Home home = tenantService.getRoom(homeID);
+       List<HomeReview> homeReviews = tenantService.findReview(homeID);
+       System.out.println(homeReviews);
+       mav.addObject("bookRoomForm", bookRoomForm);
+       mav.addObject("home",home);
+       return mav;
+    }
+
+    @Override
+    @GetMapping("/searchResults")
+    public ModelAndView searchResults() {
+        return null;
+    }
+>>>>>>> Stashed changes
     @PostMapping(value = "/loginTenant")
     @Override
     public String loginUser(@ModelAttribute LoginFormData loginFormData){
