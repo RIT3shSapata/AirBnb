@@ -19,4 +19,6 @@ public interface TenantControllerInterface{
     public String createTenant(Tenant tenant, HttpServletRequest request);
     public String addHomeReview( HomeReviewFormData homeReviewFormData, HttpSession session );
     public String bookRoom();
+    public String searchRoom();
+    public ModelAndView searchResults();
 }
