@@ -58,11 +58,14 @@ public class TenantController implements TenantControllerInterface{
         return mav;
     }
 
+    @GetMapping("/viewRoom")
     @Override
     public ModelAndView viewRoom(@RequestParam(value="id") Integer homeID){
        ModelAndView mav = new ModelAndView("roomDetails");
        BookRoomForm bookRoomForm = new BookRoomForm();
        Home home = tenantService.getRoom(homeID);
+       List<HomeReview> homeReviews = tenantService.findReview(homeID);
+       System.out.println(homeReviews);
        mav.addObject("bookRoomForm", bookRoomForm);
        mav.addObject("home",home);
        return mav;
@@ -77,6 +80,7 @@ public class TenantController implements TenantControllerInterface{
         mav.addObject("homes",homes);
         return mav;
     }
+
     @PostMapping(value = "/loginTenant")
     @Override
     public String loginTenant(@ModelAttribute LoginFormData loginFormData, HttpServletRequest request){

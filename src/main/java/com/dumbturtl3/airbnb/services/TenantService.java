@@ -13,4 +13,5 @@ public interface TenantService {
     public void homeReview(HomeReviewFormData homeReviewFormData, Integer tenantID, Integer homeID);
     public Home getRoom(Integer id);
     public List<Home> findHomes(String city);
+    public List<HomeReview> findReview(Integer id);
 }

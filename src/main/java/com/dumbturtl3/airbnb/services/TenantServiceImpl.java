@@ -54,6 +54,12 @@ public class TenantServiceImpl implements TenantService{
         homeReviewRepository.save(homeReview);
 //        tenantRepository.homeReview(homeReviewFormData);
     }
+    @Override
+    public List<HomeReview> findReview(Integer id){
+        List<HomeReview> homeReviews = homeReviewRepository.findByHomeID(id);
+        return homeReviews;
+    }
+
 
     @Override
     public Home getRoom(Integer id) {
