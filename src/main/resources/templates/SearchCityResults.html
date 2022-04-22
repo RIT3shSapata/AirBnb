@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Airbnb</title>
+</head>
+<body>
+<h1>
+  Search City Results
+</h1>
+<div th:each="home:${homes}">
+    <p th:text="${home}"></p>
+</div>
+</body>
+</html>
