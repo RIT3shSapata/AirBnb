@@ -1,9 +1,10 @@
 package com.dumbturtl3.airbnb.repository;
 
 import com.dumbturtl3.airbnb.models.Home;
-import com.dumbturtl3.airbnb.models.HomeFormData;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface HomeRepository {
-    void addRoom(HomeFormData homeFormData);
-    Home getRoom(Integer id);
+import java.util.List;
+
+public interface HomeRepository extends JpaRepository<Home,Integer> {
+    List<Home> findByCity(String City);
 }
