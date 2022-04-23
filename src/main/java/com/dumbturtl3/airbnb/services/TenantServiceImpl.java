@@ -14,31 +14,26 @@ public class TenantServiceImpl implements TenantService{
     private TenantRepository tenantRepository;
 
     @Autowired
-    private TenantRepository1 tenantRepository1;
-
-    @Autowired
     private HomeRepository homeRepository;
-    @Autowired
-    private HomeRepository1 homeRepository1;
 
     @Autowired
     private HomeReviewRepository homeReviewRepository;
 
     @Override
     public String signUp(Tenant tenant) {
-        Tenant obj = tenantRepository1.save(tenant);
+        Tenant obj = tenantRepository.save(tenant);
         return Integer.toString(obj.getTenantID());
     }
 
     @Override
     public Tenant findTenant(String id) {
-        return tenantRepository1.getById(Integer.parseInt(id));
+        return tenantRepository.getById(Integer.parseInt(id));
     }
 
     @Override
     public String login(LoginFormData loginFormData) {
 //        Integer id = tenantRepository.findByEmailAndPassword(loginFormData.getEmail(), loginFormData.getPassword());
-        List<Tenant> tenants = tenantRepository1.findByEmailAndPassword(loginFormData.getEmail(),loginFormData.getPassword());
+        List<Tenant> tenants = tenantRepository.findByEmailAndPassword(loginFormData.getEmail(),loginFormData.getPassword());
         int id = tenants.get(0).getTenantID();
         return Integer.toString(id);
     }
@@ -63,13 +58,13 @@ public class TenantServiceImpl implements TenantService{
 
     @Override
     public Home getRoom(Integer id) {
-        Home home = homeRepository.getRoom(id);
+        Home home = homeRepository.getById(id);
         return home;
     }
 
     @Override
     public List<Home> findHomes(String city) {
-        List<Home> homes = homeRepository1.findByCity(city);
+        List<Home> homes = homeRepository.findByCity(city);
         return homes;
     }
 
