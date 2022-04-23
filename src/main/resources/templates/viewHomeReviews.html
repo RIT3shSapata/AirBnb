@@ -2,11 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Reviews</title>
-</head>
-<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<body class="w-full">
+<div class="mx-10 absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3">
+<h2 class="text-red-600 font-semibold text-center align-center text-3xl">
+    Reviews of the room
+</h2>
+    <br></br>
 <div th:each="homereview:${homereviews}">
-    <h2 th:text="${homereview}"></h2>
+    <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" th:text="${homereview.review}"></h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400" th:text="${homereview.rating}"></p>
+    </div>
+</div>
+    <br/>
+    <button class=" w-full bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+        <a th:href="@{/tenant/dashboard}">Go to Dashboard</a>
+    </button>
 </div>
 </body>
 </html>
