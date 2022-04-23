@@ -1,17 +1,13 @@
 package com.dumbturtl3.airbnb.repository;
 
-import com.dumbturtl3.airbnb.models.HomeReviewFormData;
-import com.dumbturtl3.airbnb.models.SignUpFormData;
 import com.dumbturtl3.airbnb.models.Tenant;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface TenantRepository {
-    Integer addTenant(SignUpFormData signUpFormData);
-
-    Tenant findTenant(Integer id);
-
-    Integer findByEmailAndPassword(String email, String password);
-
-    void homeReview(HomeReviewFormData homeReviewFormData);
+public interface TenantRepository extends JpaRepository<Tenant, Integer> {
+    List<Tenant> findByEmailAndPassword(String email, String password);
 }
+
