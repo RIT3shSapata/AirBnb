@@ -12,6 +12,7 @@ public interface TenantControllerInterface{
     public ModelAndView dashboard(HttpSession session);
     public ModelAndView homeReview(Integer homeID);
     public ModelAndView viewRoom(Integer homeID);
+    public ModelAndView viewRoomReview(Integer homeID);
     public String loginTenant(LoginFormData loginFormData, HttpServletRequest request);
     public String createTenant(Tenant tenant, HttpServletRequest request);
     public String addHomeReview( HomeReviewFormData homeReviewFormData, HttpSession session );
