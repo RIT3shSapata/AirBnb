@@ -2,11 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Airbnb</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
 </head>
-<body>
-    <h1>Airbnb</h1>
-    <a th:href="@{/owner/}">Owner UI</a>
-    <a th:href="@{/tenant/}">Tenant UI</a>
+<body class="w-full">
+<div class="w-full max-w-xs absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <h2 class="text-red-600 font-semibold text-center align-center text-2xl">This is an AirBnB clone</h2><br/>
+    <h3 class="text-red-500 font-semibold text-center align-center text-xl">Spring Boot | PostgreSQL</h3><br/>
+    <h5 class="text-red-400 font-semibold text-center align-center text-xs">Ritesh Sapata, Sachin Shenoy, Sahana Ramesh.<br></br>PESU, 2022. OOAD Course Work</h5><br/>
+    <div class="flex space-x-4">
+        <button class="w-full bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+            <a th:href="@{/tenant/}">TENANT UI</a>
+        </button><br></br>
+        <button class=" w-full bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+            <a th:href="@{/owner/}">OWNER UI</a>
+        </button>
+    </div>
+</div>
 </body>
 </html>

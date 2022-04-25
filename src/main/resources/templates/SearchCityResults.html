@@ -2,14 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Airbnb</title>
+    <title>Add Tenant Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
 </head>
-<body>
-<h1>
-  Search City Results
-</h1>
-<div th:each="home:${homes}">
-    <p th:text="${home}"></p>
+<body class="w-full">
+<div class="mx-10 absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3">
+<h2 class="text-red-600 font-semibold text-center align-center text-3xl">
+  Favourite staycations in the city
+</h2>
+    <br></br>
+<div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead class="border-b">
+                    <tr>
+                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                            HomeID
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                            Home Name
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                            Price
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                            City
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                            State
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                            Country
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                            Pin
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="border-b bg-white border-b transition duration-300 ease-in-out hover:bg-red-100" th:each="home:${homes}">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><p th:text="${home.homeID}"></p></td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <p th:text="${home.homeName}"></p>
+                        </td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <p th:text="${home.price}"></p>
+                        </td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <p th:text="${home.city}"></p>
+                        </td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <p th:text="${home.state}"></p>
+                        </td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <p th:text="${home.country}"></p>
+                        </td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <p th:text="${home.pin}"></p>
+                        </td>
+                        <td>
+                            <button class="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-7 rounded">
+                                <a th:href="@{/tenant/seeReviews/(id=${home.homeID})}">See Reviews</a>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <button class="w-full bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+        <a th:href="@{/tenant/dashboard}">Go to Dashboard</a>
+    </button>
+</div>
 </div>
 </body>
 </html>

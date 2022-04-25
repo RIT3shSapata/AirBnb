@@ -72,10 +72,18 @@ public class TenantController implements TenantControllerInterface{
     }
 
     @Override
+    @GetMapping("/seeReviews")
+    public ModelAndView viewRoomReview(@RequestParam(value="id") Integer homeID) {
+        List<HomeReview> homereviews=tenantService.findReview(homeID);
+        ModelAndView mav = new ModelAndView("viewHomeReviews");
+        mav.addObject("homereviews",homereviews);
+        return mav;
+    }
+
+    @Override
     @GetMapping("/searchResults")
     public ModelAndView searchResults(@ModelAttribute SearchByCity searchByCity, HttpSession session) {
         List<Home> homes=tenantService.findHomes(searchByCity.getCity());
-        System.out.println(homes);
         ModelAndView mav = new ModelAndView("SearchCityResults");
         mav.addObject("homes",homes);
         return mav;
