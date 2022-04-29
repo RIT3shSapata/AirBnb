@@ -4,4 +4,4 @@ Our project is a clone of the Airbnb application with the following functionalit
 - Add a room and review tenants for owners
 - Search for rooms by city, review owners, and see room reviews for tenants
 
-# Report on the project : https://github.com/RIT3shSapata/AirBnb/blob/main/pdf/UE19CS353%20-%20OOADJ%20-%20Report.docx.pdf
+Report on the project : https://github.com/RIT3shSapata/AirBnb/blob/main/pdf/UE19CS353%20-%20OOADJ%20-%20Report.docx.pdf
