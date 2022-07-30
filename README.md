@@ -6,7 +6,7 @@ Our project is a clone of the Airbnb application with the following functionalit
 
 Project built by: <br/>
 
-Sahana Ramesh - - Add Home, Search rooms, View reviews, website design <br/>
+Sahana Ramesh - Add Home, Search rooms, View reviews, website design <br/>
 S Ritesh Kumar -  Springboot Setup, Database setup, Tenant login/signup, Owner login/signup <br/>
 Sachin Shenoy - Add a Home review, Add tenant Review <br/>
 
